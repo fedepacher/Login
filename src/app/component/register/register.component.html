@@ -1,0 +1,132 @@
+<div class="register">
+    <form [formGroup]=formRegister (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Nombre completo</label>
+            <input 
+            type="text"
+            formControlName="fullname"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }"/>
+            <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                <div *ngIf="f.fullname.errors.required">Se requiere nombre completo</div>
+            </div>            
+        </div>
+
+        <div class="form-group">
+            <label>ID Dispositivo</label>
+            <input 
+            type="number"
+            formControlName="map_id"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.map_id.errors }"/>
+            <div *ngIf="submitted && f.map_id.errors" class="invalid-feedback">
+                <div *ngIf="f.map_id.errors.required">Se requiere ID</div>
+                <div *ngIf="f.map_id.errors.min">
+                    ID tiene que ser como minimo un numero
+                </div>
+                <div *ngIf="f.map_id.errors.max">
+                    ID teine que ser como maximo cuatro numeros
+                </div>
+            </div>            
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input 
+            type="text"
+            formControlName=email
+            class="form-control"
+            [ngClass]= "{ 'is-invalid': submitted && f.email.errors}"/>
+            <div>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Se requiere email</div>
+                    <div *ngIf="f.email.errors.email">Email invalido</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Contraseña</label>
+            <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]= "{ 'is-invalid': submitted && f.password.errors}"/>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Se requiere una contraseña</div>
+                <div *ngIf="f.password.errors.minlength">La contraseña debe contener al menos 6 caracteres</div>
+                <div *ngIf="f.password.errors.maxlength">La contraseña debe contener menos de 20 caracteres</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Confirmar contraseña</label>
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+            />
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.confirmPassword.errors.required">Se requiere confirmar contraseña</div>
+              <div *ngIf="f.confirmPassword.errors.matching">Confirmacion de contraseña no coincide</div>
+            </div>
+        </div>
+
+        <div class="form-group form-check">
+            <input
+            type="checkbox"
+            formControlName="acceptTerms"
+            [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }"/>
+            <label for="acceptTerms" class="form-check-label">He leido y estoy de acuerdo con los terminos y condiciones</label>
+            <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">
+                Se requiere aceptar terminos y condicciones
+            </div>            
+        </div>
+
+       <div class="form-group">
+           <button type="submit" class="btn btn-primary">Registrarse</button>
+           <button type="button" (click)="onReset()" class="btn btn-warning float-rigth">Reset</button>
+       </div>
+
+    </form>
+</div>
+
+<!-- <div class="register">
+    <form [formGroup]=formRegister (ngSubmit)=submit()>
+        <h1>Register</h1>
+        <div>
+            <input 
+            formControlName="email"
+            type="email" 
+            placeholder="Email"
+            required="required"
+            />            
+        </div> 
+        <div class="error" *ngIf="formRegister.controls.email.invalid && formRegister.controls.email.touched">
+            <p>Invalid email</p>
+        </div>
+        <div>
+            <input 
+            formControlName="password"
+            type="password" 
+            placeholder="Password"
+            required="required"
+            />
+        </div>
+        <div>         
+            <input 
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Repeat password"
+            required="required"
+            />
+        </div>
+        
+        <div>
+            <button type="submit" [disabled]="formRegister.invalid">Register</button>
+        </div>
+    </form>
+</div>
+<p>{{formRegister.value | json}}</p>
+<p>{{formRegister.status | json}}</p> -->
