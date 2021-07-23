@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, AbstractControl, FormGroup, Validators } from '@angular/forms';
 import Validation from "../utils/validation";
+import { HttpClient } from '@angular/common/http';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,7 @@ export class RegisterComponent implements OnInit {
   public formRegister:FormGroup = new FormGroup({});
   submitted = false;
 
-  constructor(private fBuilder:FormBuilder) { }
+  constructor(private fBuilder:FormBuilder, public userService: UsersService) { }
 
   ngOnInit(): void {
     this.createRegisterForm();
@@ -43,7 +45,8 @@ export class RegisterComponent implements OnInit {
       console.log("Error en submit");
       return;
     }
-    console.log(JSON.stringify(this.formRegister.value, null, 2));
+    //console.log(JSON.stringify(this.formRegister.value, null, 2));
+    this.register();
   }
 
   onReset(): void {
@@ -52,7 +55,13 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  // submit(){
-  //   console.log("Submitted");
-  // }
+  register(){
+    const user = {email : this.f.email.value, password: this.f.password.value};
+    console.log(user);
+    this.userService.register(user).subscribe( data => {
+      console.log(data);     
+    });
+    
+  }
+ 
 }
