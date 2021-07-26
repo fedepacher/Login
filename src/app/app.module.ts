@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './component/login/login.module';
 import { RegisterModule } from './component/register/register.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { HomeModule } from './component/home/home.module';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule, 
+    LoginModule,
+    HomeModule, 
     RegisterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

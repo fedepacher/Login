@@ -6,6 +6,7 @@ import { LoginComponent } from "./component/login/login.component";
 //import { LoginModule } from "./component/login/login.module";
 import { RegisterComponent } from "./component/register/register.component";
 //import { RegisterModule } from "./component/register/register.module";
+import { HomeComponent } from './component/home/home.component';
 
 /**
  * Con esto al ejecutarse en localhost:4200 se muestra app.component que es el
@@ -18,7 +19,8 @@ import { RegisterComponent } from "./component/register/register.component";
 const routes: Routes = [
   { path: "", component: AppComponent, pathMatch: "full"},
   { path: "login", component: LoginComponent, pathMatch: "full"},
-  { path: "register", component: RegisterComponent, pathMatch: "full"}
+  { path: "register", component: RegisterComponent, pathMatch: "full"},
+  { path: "home", component: HomeComponent, pathMatch: "full"}
 ];
 
 @NgModule({
